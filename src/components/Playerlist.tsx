@@ -105,6 +105,16 @@ const Playerlist = () => {
   return (
     <>
       <div className="player-list">
+        {players.length === 0 ? (
+          <h1>Začít novou hru</h1>
+        ) : (
+          <div className="title-wrapper">
+            <h2 className="count-box">Jméno</h2>
+            <h2 className="count-box">Výhry</h2>
+            <h2 className="count-box">Prohry</h2>
+            <h2 className="count-box score">Score</h2>
+          </div>
+        )}
         {players.map((player, index) => {
           return (
             <div className="flex player-wrapper" key={player.id}>

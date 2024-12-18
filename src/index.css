@@ -29,6 +29,8 @@
 
   --font-size-s: 18px;
   --font-size-m: 21px;
+
+  --player-width: 580px;
 }
 
 body {

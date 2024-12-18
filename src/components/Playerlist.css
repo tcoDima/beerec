@@ -72,19 +72,19 @@
     background-color: var(--light-color-3);
 }
 
-.player-list :nth-child(1) .position {    
+.player-list :nth-child(2) .position {    
     background: linear-gradient(270deg, #fbffc4, #ffc619, #fffd80, #faf2d9);
 }
-.player-list :nth-child(2) .position {
+.player-list :nth-child(3) .position {
     background: linear-gradient(270deg, #a5a5a5, #ffffff, #d3d3d1, #faf2d9);
 }
-.player-list :nth-child(3) .position {    
+.player-list :nth-child(4) .position {    
     background: linear-gradient(270deg, #c09e06, #dba910, #b19600, #e9c763);
 
 }
-.player-list :nth-child(1) .position,
 .player-list :nth-child(2) .position,
-.player-list :nth-child(3) .position { 
+.player-list :nth-child(3) .position,
+.player-list :nth-child(4) .position { 
     background-size: 400% 400%;
     -webkit-animation: glare 10s ease infinite;
     -moz-animation: glare 10s ease infinite;
@@ -115,7 +115,10 @@
 }
 
 .title-wrapper {
+    display: flex;
+    gap: 10px;
     margin: 0 auto;
+    width: var(--player-width);
 }
 .title-wrapper h2 {
     font-size: 16px;
@@ -126,10 +129,6 @@
 }
 .player-list h1 {
     margin: 0 0 50px 0;
-}
-.title-wrapper .player-container {
-    background-color: transparent;
-    padding: 0;
 }
 .title-wrapper .count-box {
     background-color: transparent;

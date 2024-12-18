@@ -1,21 +1,21 @@
 .create-player-container {
     display: flex;
     gap: 10px;
-    background-color: var(--light-color-1);
-    padding: var(--padding-m);
-    border-radius: var(--border-radius-l);
     margin: 0 auto;
-    width: 580px;
+    padding: var(--padding-m);
+    width: var(--player-width);
+    background-color: var(--light-color-1);
+    border-radius: var(--border-radius-l);
 }
 
 .cp-button {
     height: 45px;
     width: 450px;
     align-items: center;
-    background-color: var(--light-color-2);
-    font-size: var(--font-size-m);
     padding: var(--padding-m);
+    background-color: var(--light-color-2);
     border-radius: var(--border-radius-m);
+    font-size: var(--font-size-m);
     border: none;
     cursor: pointer;
 }
@@ -24,13 +24,13 @@
 }
 
 .cp-input {
-    border-radius: var(--border-radius-m);
-    font-size: var(--font-size-m);
-    background-color: var(--light-color-2);
-    border: none;
-    padding: var(--padding-m);
     width: 100%;
     margin-right: 0;
+    padding: var(--padding-m);
+    border-radius: var(--border-radius-m);
+    border: none;
+    background-color: var(--light-color-2);
+    font-size: var(--font-size-m);
 }
 .cp-input:focus {
     background-color: var(--light-color-3);

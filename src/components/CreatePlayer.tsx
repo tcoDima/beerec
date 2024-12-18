@@ -20,6 +20,7 @@ const CreatePlayer = () => {
       score: Number(newScore),
       createdAt: serverTimestamp() || new Date(0),
     });
+    setNewName("");
   };
 
   return (
