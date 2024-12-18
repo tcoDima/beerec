@@ -35,7 +35,22 @@ body {
   text-align: center;
   color: #fff;
   background: var(--gradient-1);
-  min-height: 100.1vh;
+  min-height: 101vh;
   padding: 50px;
   margin: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  background: hsl(0, 0%, 30%);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--accent-color); 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(347, 81%, 32%); 
 }

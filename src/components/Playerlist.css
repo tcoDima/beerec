@@ -1,0 +1,158 @@
+.player-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 100%;
+    width: 720px;
+    margin: 0 auto;
+    padding: 50px 25px;
+}
+
+.player-container,
+.count-box,
+.single-box, 
+.single-box h2 {
+    padding: var(--padding-m);
+}
+
+.player-container {
+    background-color: var(--light-color-1);
+}
+
+.count-box {
+    width: 142px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--light-color-2);
+}
+
+.count-box.score {
+    width: 75px;
+    justify-content: center;
+    font-weight: 600;
+}
+.single-box {
+    min-width: 50px;
+    aspect-ratio: 1;
+    background-color:var(--light-color-1);
+}
+.single-box h2 {
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-color-2);
+    width: 40px;
+    aspect-ratio: 1;
+}
+
+h2 {
+    font-size: var(--font-size);
+    font-weight: 400;
+    margin: 0 auto;
+    color: #000;
+}
+
+.name-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.num-button,
+.delete-button {
+    aspect-ratio: 1;
+    font-size: 2em;
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+}
+.num-button {
+    background-color: var(--light-color-3);
+    width: 40px;
+}
+.delete-button {
+    background-color: var(--light-color-2);
+    width: 50px;
+}
+
+.num-button:hover {
+    background-color: var(--light-color-4);
+}
+.delete-button:hover {
+    background-color: var(--light-color-3);
+}
+
+
+.player-list :nth-child(1) .position {    
+    background: linear-gradient(270deg, #fbffc4, #ffc619, #fffd80, #faf2d9);
+}
+.player-list :nth-child(2) .position {
+    background: linear-gradient(270deg, #a5a5a5, #ffffff, #d3d3d1, #faf2d9);
+}
+.player-list :nth-child(3) .position {    
+    background: linear-gradient(270deg, #c09e06, #dba910, #b19600, #e9c763);
+
+}
+.player-list :nth-child(1) .position,
+.player-list :nth-child(2) .position,
+.player-list :nth-child(3) .position { 
+    background-size: 400% 400%;
+    -webkit-animation: glare 10s ease infinite;
+    -moz-animation: glare 10s ease infinite;
+    animation: glare 10s ease infinite;
+}
+@keyframes glare {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.radius-s {
+    border-radius: var(--border-radius-s);
+}
+.radius-m {
+    border-radius: var(--border-radius-m);
+}
+.radius-l {
+    border-radius: var(--border-radius-l);
+}
+
+.player-wrapper.animate-up .player-container {
+    animation: animateUp 0.75s ease !important;
+} 
+.player-wrapper.animate-down .player-container {
+    animation: animateDown 0.75s ease;
+} 
+
+@keyframes animateUp {
+    0%{background-color: var(--light-color-1);}
+    50%{background-color: hsla(130, 78%, 46%, 0.5);}
+    100%{background-color: var(--light-color-1);}
+}
+@keyframes animateDown {
+    0%{background-color: var(--light-color-1);}
+    50%{background-color: hsla(0, 100%, 50%, 0.5);}
+    100%{background-color: var(--light-color-1);}
+}
+
+
+.title-wrapper {
+    margin: 0 auto;
+}
+.title-wrapper h2 {
+    font-size: 16px;
+    font-weight: 200;
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+}
+.player-list h1 {
+    margin: 0 0 50px 0;
+}
+.title-wrapper .player-container {
+    background-color: transparent;
+    padding: 0;
+}
+.title-wrapper .count-box {
+    background-color: transparent;
+}
