@@ -15,6 +15,7 @@
 
 .player-container {
     background-color: var(--light-color-1);
+    border-radius: var(--border-radius-l);
 }
 
 .count-box {
@@ -22,6 +23,7 @@
     justify-content: space-between;
     align-items: center;
     background-color: var(--light-color-2);
+    border-radius: var(--border-radius-m);
 }
 .count-box.score {
     width: 75px;
@@ -33,11 +35,13 @@
     min-width: 50px;
     aspect-ratio: 1;
     background-color:var(--light-color-1);
+    border-radius: var(--border-radius-l);
 }
 .single-box h2 {
     justify-content: center;
     align-items: center;
     background-color: var(--light-color-2);
+    border-radius: var(--border-radius-m);
     width: 40px;
     aspect-ratio: 1;
 }
@@ -47,6 +51,7 @@
     justify-content: center;
     align-items: center;
 }
+
 
 .num-button,
 .delete-button {
@@ -59,10 +64,12 @@
 .num-button {
     background-color: var(--light-color-3);
     width: 40px;
+    border-radius: var(--border-radius-s);
 }
 .delete-button {
     background-color: var(--light-color-2);
     width: 50px;
+    border-radius: var(--border-radius-m);
 }
 
 .num-button:hover {

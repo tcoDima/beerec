@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { db, playerCollectionRef } from "../firebaseConfig";
 import {
   onSnapshot,
@@ -12,7 +12,7 @@ import "./Playerlist.css";
 import trashIcon from "../assets/trash-icon.svg";
 
 const Playerlist = () => {
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState<any>([]);
 
   // Fetch players
   useEffect(() => {
@@ -78,7 +78,7 @@ const Playerlist = () => {
   };
 
   // Trigger animation
-  const animateUp = (event) => {
+  const animateUp = (event: any) => {
     const button = event.target;
     const parentElement = button.closest(".player-wrapper");
 
@@ -90,7 +90,7 @@ const Playerlist = () => {
       }, 750);
     }
   };
-  const animateDown = (event) => {
+  const animateDown = (event: any) => {
     const button = event.target;
     const parentElement = button.closest(".player-wrapper");
 
@@ -116,21 +116,21 @@ const Playerlist = () => {
             <h2 className="count-box score">Score</h2>
           </div>
         )}
-        {players.map((player, index) => {
+        {players.map((player: any, index: number) => {
           return (
             <div className="flex player-wrapper" key={player.id}>
-              <div className="single-box position radius-l">
-                <h2 className="flex radius-m">{index + 1}</h2>
+              <div className="single-box position">
+                <h2 className="flex index">{index + 1}</h2>
               </div>
 
-              <div className="flex player-container radius-l">
-                <div className="flex count-box radius-m">
+              <div className="flex player-container">
+                <div className="flex count-box">
                   <h2>{player.name}</h2>
                 </div>
 
-                <div className="flex count-box radius-m">
+                <div className="flex count-box">
                   <button
-                    className="num-button button radius-s"
+                    className="num-button button"
                     onClick={(event) => {
                       plusWin(player.id, player.wins, player.losses);
                       animateUp(event);
@@ -140,7 +140,7 @@ const Playerlist = () => {
                   </button>
                   <h2>{player.wins}</h2>
                   <button
-                    className="num-button button radius-s"
+                    className="num-button button"
                     onClick={(event) => {
                       minusWin(player.id, player.wins, player.losses);
                       animateDown(event);
@@ -150,9 +150,9 @@ const Playerlist = () => {
                   </button>
                 </div>
 
-                <div className="flex count-box radius-m">
+                <div className="flex count-box">
                   <button
-                    className="num-button button radius-s"
+                    className="num-button button"
                     onClick={(event) => {
                       plusLose(player.id, player.wins, player.losses);
                       animateDown(event);
@@ -162,7 +162,7 @@ const Playerlist = () => {
                   </button>
                   <h2>{player.losses}</h2>
                   <button
-                    className="num-button button radius-s"
+                    className="num-button button"
                     onClick={(event) => {
                       minusLose(player.id, player.wins, player.losses);
                       animateUp(event);
@@ -171,14 +171,14 @@ const Playerlist = () => {
                     -
                   </button>
                 </div>
-                <h2 className="flex count-box score radius-m">
+                <h2 className="flex count-box score">
                   {formatScore(player.score)}
                 </h2>
               </div>
 
-              <div className="single-box radius-l delete-container">
+              <div className="single-box delete-container">
                 <button
-                  className="delete-button radius-m"
+                  className="delete-button"
                   onClick={() => {
                     deletePlayer(player.id);
                   }}
