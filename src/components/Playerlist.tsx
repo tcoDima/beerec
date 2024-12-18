@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { db, playerCollectionRef } from "../firebaseConfig";
-import { deleteDoc, doc, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  onSnapshot,
+  query,
+  orderBy,
+  doc,
+  deleteDoc,
+  updateDoc,
+} from "firebase/firestore";
 import "./Playerlist.css";
 
 const Playerlist = () => {
   const [players, setPlayers] = useState([]);
-
-  // Delete Player Function
-  const deletePlayer = async (id) => {
-    const playerDoc = doc(db, "players", id);
-    await deleteDoc(playerDoc);
-  };
 
   // Fetch players
   useEffect(() => {
@@ -26,6 +27,72 @@ const Playerlist = () => {
 
     return () => unsubscribe();
   }, []);
+
+  // Delete Player Function
+  const deletePlayer = async (id) => {
+    const playerDoc = doc(db, "players", id);
+    await deleteDoc(playerDoc);
+  };
+
+  // Update Wins Functions
+  const plusWin = async (id, wins, losses) => {
+    const playerDoc = doc(db, "players", id);
+    const updatedWins = wins + 1;
+    const newScore = updatedWins / (losses || 1);
+    const newFields = { wins: updatedWins, score: newScore };
+    await updateDoc(playerDoc, newFields);
+  };
+  const minusWin = async (id, wins, losses) => {
+    const playerDoc = doc(db, "players", id);
+    if (wins < 1) return;
+    const updatedWins = wins - 1;
+    const newScore = updatedWins / (losses || 1);
+    const newFields = { wins: updatedWins, score: newScore };
+    await updateDoc(playerDoc, newFields);
+  };
+
+  // Update Losses Functions
+  const plusLose = async (id, wins, losses) => {
+    const playerDoc = doc(db, "players", id);
+    const updatedLosses = losses + 1;
+    const newScore = wins / (updatedLosses || 1);
+    const newFields = { losses: updatedLosses, score: newScore };
+    await updateDoc(playerDoc, newFields);
+  };
+  const minusLose = async (id, wins, losses) => {
+    const playerDoc = doc(db, "players", id);
+    if (losses < 1) return;
+    const updatedLosses = losses - 1;
+    const newScore = wins / (updatedLosses || 1);
+    const newFields = { losses: updatedLosses, score: newScore };
+    await updateDoc(playerDoc, newFields);
+  };
+
+  // Trigger animation
+  const animateUp = (event) => {
+    const button = event.target;
+    const parentElement = button.closest(".player-wrapper");
+
+    if (parentElement && !parentElement.classList.contains("animate-up")) {
+      parentElement.classList.add("animate-up");
+
+      setTimeout(() => {
+        parentElement.classList.remove("animate-up");
+      }, 750);
+    }
+  };
+  const animateDown = (event) => {
+    const button = event.target;
+    const parentElement = button.closest(".player-wrapper");
+
+    if (parentElement && !parentElement.classList.contains("animate-down")) {
+      parentElement.classList.add("animate-down");
+
+      setTimeout(() => {
+        parentElement.classList.remove("animate-down");
+      }, 750);
+    }
+  };
 
   return (
     <>
@@ -43,15 +110,47 @@ const Playerlist = () => {
                 </div>
 
                 <div className="flex count-box radius-m">
-                  <button className="num-button button radius-s">+</button>
+                  <button
+                    className="num-button button radius-s"
+                    onClick={(event) => {
+                      plusWin(player.id, player.wins, player.losses);
+                      animateUp(event);
+                    }}
+                  >
+                    +
+                  </button>
                   <h2>{player.wins}</h2>
-                  <button className="num-button button radius-s">-</button>
+                  <button
+                    className="num-button button radius-s"
+                    onClick={(event) => {
+                      minusWin(player.id, player.wins, player.losses);
+                      animateDown(event);
+                    }}
+                  >
+                    -
+                  </button>
                 </div>
 
                 <div className="flex count-box radius-m">
-                  <button className="num-button button radius-s">+</button>
+                  <button
+                    className="num-button button radius-s"
+                    onClick={(event) => {
+                      plusLose(player.id, player.wins, player.losses);
+                      animateDown(event);
+                    }}
+                  >
+                    +
+                  </button>
                   <h2>{player.losses}</h2>
-                  <button className="num-button button radius-s">-</button>
+                  <button
+                    className="num-button button radius-s"
+                    onClick={(event) => {
+                      minusLose(player.id, player.wins, player.losses);
+                      animateUp(event);
+                    }}
+                  >
+                    -
+                  </button>
                 </div>
                 <h2 className="flex count-box score radius-m">
                   {player.score}
