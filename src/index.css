@@ -42,6 +42,16 @@ body {
   margin: 0;
 }
 
+.radius-s {
+  border-radius: var(--border-radius-s);
+}
+.radius-m {
+  border-radius: var(--border-radius-m);
+}
+.radius-l {
+  border-radius: var(--border-radius-l);
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

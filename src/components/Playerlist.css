@@ -48,7 +48,6 @@
     align-items: center;
 }
 
-
 .num-button,
 .delete-button {
     aspect-ratio: 1;
@@ -72,7 +71,6 @@
 .delete-button:hover {
     background-color: var(--light-color-3);
 }
-
 
 .player-list :nth-child(1) .position {    
     background: linear-gradient(270deg, #fbffc4, #ffc619, #fffd80, #faf2d9);
@@ -98,16 +96,6 @@
     100%{background-position:0% 50%}
 }
 
-.radius-s {
-    border-radius: var(--border-radius-s);
-}
-.radius-m {
-    border-radius: var(--border-radius-m);
-}
-.radius-l {
-    border-radius: var(--border-radius-l);
-}
-
 .player-wrapper.animate-up .player-container {
     animation: animateUp 0.75s ease !important;
 } 
@@ -125,7 +113,6 @@
     50%{background-color: hsla(0, 100%, 50%, 0.5);}
     100%{background-color: var(--light-color-1);}
 }
-
 
 .title-wrapper {
     margin: 0 auto;
