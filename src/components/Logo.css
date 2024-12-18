@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap');
+
+.logo-container {
+    position: relative;
+}
+
+.logo-container h1 {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    translate: -50% -50%;
+    margin: 0;
+    
+    font-family: "Lexend Deca", serif;
+    font-size: 95px;
+    font-weight: 900;
+    text-transform: uppercase;
+
+    z-index: 1;
+}
+
+.beerec-shape {
+    animation: logo-glow 5s ease-in-out infinite;
+}
+
+@keyframes logo-glow {
+    0% {
+        filter: drop-shadow(0 0 20px hsl(0, 0%, 25%));
+    }
+    50% {
+        filter: drop-shadow(0 0 70px hsl(0, 0%, 25%));
+    }
+    100% {
+        filter: drop-shadow(0 0 20px hsl(0, 0%, 25%));
+    }
+}
