@@ -68,6 +68,14 @@ const Playerlist = () => {
     await updateDoc(playerDoc, newFields);
   };
 
+  // Format score to maxim of 3 decimal points
+  const formatScore = (score) => {
+    if (score % 1 === 0) {
+      return score;
+    }
+    return parseFloat(score.toFixed(3));
+  };
+
   // Trigger animation
   const animateUp = (event) => {
     const button = event.target;
@@ -153,7 +161,7 @@ const Playerlist = () => {
                   </button>
                 </div>
                 <h2 className="flex count-box score radius-m">
-                  {player.score}
+                  {formatScore(player.score)}
                 </h2>
               </div>
 
