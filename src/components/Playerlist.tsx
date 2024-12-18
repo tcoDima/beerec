@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import { db, playerCollectionRef } from "../firebaseConfig";
 import { deleteDoc, doc, onSnapshot, orderBy, query } from "firebase/firestore";
 import "./Playerlist.css";
-import CreatePlayer from "./CreatePlayer";
 
 const Playerlist = () => {
   const [players, setPlayers] = useState([]);
+
+  // Delete Player Function
+  const deletePlayer = async (id) => {
+    const playerDoc = doc(db, "players", id);
+    await deleteDoc(playerDoc);
+  };
 
   // Fetch players
   useEffect(() => {
@@ -54,7 +59,12 @@ const Playerlist = () => {
               </div>
 
               <div className="single-box radius-l delete-container">
-                <button className="delete-button radius-m">
+                <button
+                  className="delete-button radius-m"
+                  onClick={() => {
+                    deletePlayer(player.id);
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 448 512"
