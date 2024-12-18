@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { db, playerCollectionRef } from "../firebaseConfig";
 import { deleteDoc, doc, onSnapshot, orderBy, query } from "firebase/firestore";
 import "./Playerlist.css";
+import CreatePlayer from "./CreatePlayer";
 
 const Playerlist = () => {
   const [players, setPlayers] = useState([]);
@@ -47,7 +48,9 @@ const Playerlist = () => {
                   <h2>{player.losses}</h2>
                   <button className="num-button button radius-s">-</button>
                 </div>
-                <h2 className="flex count-box score radius-m"></h2>
+                <h2 className="flex count-box score radius-m">
+                  {player.score}
+                </h2>
               </div>
 
               <div className="single-box radius-l delete-container">

@@ -1,0 +1,54 @@
+.create-player-container {
+    display: flex;
+    gap: 10px;
+    background-color: var(--light-color-1);
+    padding: var(--padding-m);
+    border-radius: var(--border-radius-l);
+    margin: 0 auto;
+    width: 580px;
+}
+
+.cp-button {
+    height: 45px;
+    width: 450px;
+    align-items: center;
+    background-color: var(--light-color-2);
+    font-size: var(--font-size-m);
+    padding: var(--padding-m);
+    border-radius: var(--border-radius-m);
+    border: none;
+    cursor: pointer;
+}
+.cp-button:hover {
+    background-color: var(--light-color-3);
+}
+
+.cp-input {
+    border-radius: var(--border-radius-m);
+    font-size: var(--font-size-m);
+    background-color: var(--light-color-2);
+    border: none;
+    padding: var(--padding-m);
+    width: 100%;
+    margin-right: 0;
+}
+.cp-input:focus {
+    background-color: var(--light-color-3);
+    outline: none;
+}
+.cp-input:focus::placeholder {
+    color: transparent;
+  }
+
+@media (max-width: 768px) {
+    .create-player-container {
+        flex-wrap: wrap;
+    }
+    .cp-input {
+        text-align: center;
+        height: 30px;
+    }
+    .cp-button {
+        min-width: 100%;
+    }
+}

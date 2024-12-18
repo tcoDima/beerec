@@ -4,8 +4,6 @@
     gap: 10px;
     max-width: 100%;
     width: 720px;
-    margin: 0 auto;
-    padding: 50px 25px;
 }
 
 .player-container,
@@ -25,12 +23,12 @@
     align-items: center;
     background-color: var(--light-color-2);
 }
-
 .count-box.score {
     width: 75px;
     justify-content: center;
     font-weight: 600;
 }
+
 .single-box {
     min-width: 50px;
     aspect-ratio: 1;
@@ -42,13 +40,6 @@
     background-color: var(--light-color-2);
     width: 40px;
     aspect-ratio: 1;
-}
-
-h2 {
-    font-size: var(--font-size);
-    font-weight: 400;
-    margin: 0 auto;
-    color: #000;
 }
 
 .name-box {
