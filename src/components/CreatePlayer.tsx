@@ -5,9 +5,6 @@ import "./CreatePlayer.css";
 
 const CreatePlayer = () => {
   const [newName, setNewName] = useState("");
-  const [newWin, setNewWin] = useState(0);
-  const [newLose, setNewLose] = useState(0);
-  const [newScore, setNewScore] = useState(0);
 
   const placeholderName = "Hugh Janus";
 
@@ -15,9 +12,9 @@ const CreatePlayer = () => {
     if (!newName) return;
     await addDoc(playerCollectionRef, {
       name: newName,
-      wins: Number(newWin),
-      losses: Number(newLose),
-      score: Number(newScore),
+      wins: Number(0),
+      losses: Number(0),
+      score: Number(0),
       createdAt: serverTimestamp() || new Date(0),
     });
     setNewName("");

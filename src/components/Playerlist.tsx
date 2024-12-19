@@ -1,4 +1,4 @@
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { db, playerCollectionRef } from "../firebaseConfig";
 import {
   onSnapshot,
