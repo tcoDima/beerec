@@ -1,5 +1,5 @@
 import "./Logo.css";
-import beerecShape from "../assets/beerec.svg";
+import beerecShape from "../assets/beerec-v2.svg";
 
 const Logo = () => {
   return (

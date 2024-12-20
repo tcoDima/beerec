@@ -1,14 +1,14 @@
-import Playerlist from "./Playerlist";
 import CreatePlayer from "./CreatePlayer";
 import Logo from "./Logo";
 import "./ActiveGame.css";
+import PlayerList from "./PlayerList";
 
 const ActiveGame = () => {
   return (
     <>
       <Logo />
       <div className="active-game-container">
-        <Playerlist />
+        <PlayerList />
         <CreatePlayer />
       </div>
     </>

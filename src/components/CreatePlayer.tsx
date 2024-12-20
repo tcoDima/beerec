@@ -1,16 +1,26 @@
-import { addDoc, serverTimestamp } from "firebase/firestore";
+import { addDoc, serverTimestamp, collection } from "firebase/firestore";
 import { useState } from "react";
-import { playerCollectionRef } from "../firebaseConfig";
+import { db } from "../firebaseConfig";
 import "./CreatePlayer.css";
 
-const CreatePlayer = () => {
+const CreatePlayer = (props) => {
   const [newName, setNewName] = useState("");
 
   const placeholderName = "Hugh Janus";
 
   const createPlayer = async () => {
+    if (!props.gameId) {
+      console.error("Game ID is missing!");
+      return;
+    }
     if (!newName) return;
-    await addDoc(playerCollectionRef, {
+
+    const playersCollectionRef = collection(
+      db,
+      `games/${props.gameId}/players`
+    );
+
+    await addDoc(playersCollectionRef, {
       name: newName,
       wins: Number(0),
       losses: Number(0),

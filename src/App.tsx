@@ -1,10 +1,12 @@
 import "./App.css";
-import ActiveGame from "./components/ActiveGame";
+import CreateNewGame from "./components/CreateNewGame";
 
 function App() {
   return (
     <>
-      <ActiveGame />
+      {/* <ActiveGame /> */}
+      {/* <GameList /> */}
+      <CreateNewGame />
     </>
   );
 }

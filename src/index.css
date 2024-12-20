@@ -43,7 +43,6 @@ body {
   padding: 50px;
   margin: 0;
 }
-
 .radius-s {
   border-radius: var(--border-radius-s);
 }

@@ -2,17 +2,18 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, collection } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCJpvxFAPlc6qIGPpcpdUBZVIvs_HuAalQ",
-  authDomain: "fir-tutorial-f01fc.firebaseapp.com",
-  projectId: "fir-tutorial-f01fc",
-  storageBucket: "fir-tutorial-f01fc.firebasestorage.app",
-  messagingSenderId: "32306004770",
-  appId: "1:32306004770:web:b21bb4183fdddbfdc65b7b"
+  apiKey: "AIzaSyCzhyRFd5IXAVLekrax-i-BBOd1JNu5oAU",
+  authDomain: "beerec-867c3.firebaseapp.com",
+  projectId: "beerec-867c3",
+  storageBucket: "beerec-867c3.firebasestorage.app",
+  messagingSenderId: "1053806395596",
+  appId: "1:1053806395596:web:4e2a835ee0dea3c4e10269",
+  measurementId: "G-CK7T3H566K"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
-export const playerCollectionRef = collection(db, "players")
-export const gameCollectionRef = collection(db, "games")
+// export const playersCollectionRef = collection(db, "players")
+// export const gamesCollectionRef = collection(db, "games")
