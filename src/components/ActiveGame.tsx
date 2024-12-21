@@ -1,15 +1,14 @@
 import CreatePlayer from "./CreatePlayer";
-import Logo from "./Logo";
 import "./ActiveGame.css";
 import PlayerList from "./PlayerList";
 
-const ActiveGame = () => {
+const ActiveGame = (props: any) => {
   return (
     <>
-      <Logo />
+      <h1 className="active-game-name">{props.gameName}</h1>
       <div className="active-game-container">
-        <PlayerList />
-        <CreatePlayer />
+        <PlayerList gameId={props.gameId} />
+        <CreatePlayer gameId={props.gameId} />
       </div>
     </>
   );

@@ -108,11 +108,9 @@ const PlayerList = (props: any) => {
   return (
     <>
       <div className="player-list">
-        <h2>Game ID: {props.gameId}</h2>
-        <h2>Game Name: {props.gameName}</h2>
         {players.length === 0 ? (
           <>
-            <h1>Začít novou hru</h1>
+            <h1>Přidejte první hráče</h1>
           </>
         ) : (
           <div className="title-wrapper">

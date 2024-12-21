@@ -8,7 +8,8 @@ const GameList = () => {
   useEffect(() => {
     const fetchGames = async () => {
       const gamesCollectionRef = collection(db, "games");
-      const gamesQuery = query(gamesCollectionRef, orderBy("date", "desc")); // Fetch games ordered by date
+      const gamesQuery = query(gamesCollectionRef, orderBy("date", "desc"));
+
       const gameSnapshots = await getDocs(gamesQuery);
 
       const gamesData = await Promise.all(

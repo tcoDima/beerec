@@ -4,5 +4,9 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 50px 25px;
+    padding: 20px 25px;
+}
+.active-game-name {
+    font-size: 19px;
+    opacity: 0.25;
 }

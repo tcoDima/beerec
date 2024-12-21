@@ -1,8 +1,8 @@
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../firebaseConfig";
-import CreatePlayer from "./CreatePlayer";
-import PlayerList from "./PlayerList";
+import ActiveGame from "./ActiveGame";
+import "./CreateNewGame.css";
 
 const CreateNewGame = () => {
   const [newGameName, setNewGameName] = useState("");
@@ -25,28 +25,32 @@ const CreateNewGame = () => {
 
   return (
     <>
-      <div className="create-new-game-wrapper">
-        <input
-          className="cng-input"
-          type="string"
-          placeholder="Název hry"
-          value={newGameName}
-          onChange={(event) => {
-            setNewGameName(event.target.value);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              createNewGame();
-            }
-          }}
-        />
-        <button onClick={createNewGame}>Vytvořit novou hru</button>
-
-        {currentGameId && (
-          <PlayerList gameId={currentGameId} gameName={newGameName} />
-        )}
-        {currentGameId && <CreatePlayer gameId={currentGameId} />}
-      </div>
+      {!currentGameId ? (
+        <div className="create-new-game-wrapper">
+          <h1>Vytvořit novou hru</h1>
+          <div className="create-new-game-container">
+            <input
+              className="cng-input"
+              type="string"
+              placeholder="Název hry"
+              value={newGameName}
+              onChange={(event) => {
+                setNewGameName(event.target.value);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  createNewGame();
+                }
+              }}
+            />
+            <button onClick={createNewGame} className="cng-button">
+              Vytvořit novou hru
+            </button>
+          </div>
+        </div>
+      ) : (
+        <ActiveGame gameId={currentGameId} gameName={newGameName} />
+      )}
     </>
   );
 };

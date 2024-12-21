@@ -3,7 +3,7 @@ import { useState } from "react";
 import { db } from "../firebaseConfig";
 import "./CreatePlayer.css";
 
-const CreatePlayer = (props) => {
+const CreatePlayer = (props: any) => {
   const [newName, setNewName] = useState("");
 
   const placeholderName = "Hugh Janus";
@@ -27,6 +27,9 @@ const CreatePlayer = (props) => {
       score: Number(0),
       createdAt: serverTimestamp() || new Date(0),
     });
+
+    console.log("Succesfuly created new player: ", newName);
+
     setNewName("");
   };
 

@@ -1,14 +1,14 @@
-.create-player-container {
+.create-new-game-container {
     display: flex;
     gap: 10px;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     padding: var(--padding-m);
     width: var(--player-width);
     background-color: var(--light-color-1);
     border-radius: var(--border-radius-l);
 }
 
-.cp-button {
+.cng-button {
     height: 45px;
     width: 450px;
     align-items: center;
@@ -19,11 +19,11 @@
     border: none;
     cursor: pointer;
 }
-.cp-button:hover {
+.cng-button:hover {
     background-color: var(--light-color-3);
 }
 
-.cp-input {
+.cng-input {
     width: 100%;
     margin-right: 0;
     padding: var(--padding-m);
@@ -32,23 +32,10 @@
     background-color: var(--light-color-2);
     font-size: var(--font-size-m);
 }
-.cp-input:focus {
+.cng-input:focus {
     background-color: var(--light-color-3);
     outline: none;
 }
-.cp-input:focus::placeholder {
+.cng-input:focus::placeholder {
     color: transparent;
-}
-
-@media (max-width: 768px) {
-    .create-player-container {
-        flex-wrap: wrap;
-    }
-    .cp-input {
-        text-align: center;
-        height: 30px;
-    }
-    .cp-button {
-        min-width: 100%;
-    }
 }
