@@ -26,11 +26,13 @@
 
   --padding-s: 3px;
   --padding-m: 5px;
+  --padding-l: 10px;
 
   --font-size-s: 18px;
   --font-size-m: 21px;
 
   --player-width: 580px;
+  --inner-height: 40px;
 }
 
 body {
@@ -39,7 +41,7 @@ body {
   text-align: center;
   color: #fff;
   background: var(--gradient-1);
-  min-height: 101vh;
+  min-height: 100vh;
   padding: 50px;
   margin: 0;
 }

@@ -139,6 +139,7 @@ const PlayerList = (props: any) => {
                       plusWin(player.id, player.wins, player.losses);
                       animateUp(event);
                     }}
+                    disabled={props.isLocked}
                   >
                     +
                   </button>
@@ -149,6 +150,7 @@ const PlayerList = (props: any) => {
                       minusWin(player.id, player.wins, player.losses);
                       animateDown(event);
                     }}
+                    disabled={props.isLocked}
                   >
                     -
                   </button>
@@ -161,6 +163,7 @@ const PlayerList = (props: any) => {
                       plusLose(player.id, player.wins, player.losses);
                       animateDown(event);
                     }}
+                    disabled={props.isLocked}
                   >
                     +
                   </button>
@@ -171,6 +174,7 @@ const PlayerList = (props: any) => {
                       minusLose(player.id, player.wins, player.losses);
                       animateUp(event);
                     }}
+                    disabled={props.isLocked}
                   >
                     -
                   </button>
@@ -186,6 +190,7 @@ const PlayerList = (props: any) => {
                   onClick={() => {
                     deletePlayer(player.id);
                   }}
+                  disabled={props.isLocked}
                 >
                   <img src={trashIcon} alt="Delete Player" />
                 </button>

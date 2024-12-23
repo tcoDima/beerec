@@ -16,6 +16,8 @@ const CreateNewGame = () => {
     const newGame = {
       name: newGameName,
       date: Timestamp.now(),
+      winner: "TBD",
+      isLocked: false,
     };
 
     const gameDocRef = await addDoc(gamesCollectionRef, newGame);

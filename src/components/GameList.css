@@ -1,0 +1,18 @@
+h1 {
+    margin-bottom: 50px;
+}
+.game-name {
+    width: 300px;
+}
+.game-date {
+    width: 180px;
+}
+.game-winner {
+    gap: 10px;
+    padding: 0 10px;
+    width: 200px;
+}
+
+.new-width {
+    width: 600px;
+}

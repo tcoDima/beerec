@@ -3,7 +3,7 @@
     gap: 10px;
     margin: 0 auto;
     padding: var(--padding-m);
-    width: var(--player-width);
+    width: calc(var(--player-width) - 10px);
     background-color: var(--light-color-1);
     border-radius: var(--border-radius-l);
 }

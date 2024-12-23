@@ -1,0 +1,10 @@
+.bottom-nav {
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.bottom-nav .n-button {
+    min-width: calc((var(--player-width) - 50px ) / 3);
+}
