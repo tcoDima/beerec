@@ -1,12 +1,14 @@
 import "./App.css";
-import BottomNav from "./components/BottomNav";
+import ConfirmationModal from "./components/ConfirmationModal";
+import Game from "./components/Game";
 import Logo from "./components/Logo";
 
 function App() {
   return (
     <>
       <Logo />
-      <BottomNav />
+      <Game />
+      <ConfirmationModal />
     </>
   );
 }

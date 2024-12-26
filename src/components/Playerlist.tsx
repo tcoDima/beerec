@@ -1,52 +1,59 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { db } from "../firebaseConfig";
-import {
-  onSnapshot,
-  query,
-  orderBy,
-  doc,
-  deleteDoc,
-  updateDoc,
-  collection,
-} from "firebase/firestore";
+import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import "./PlayerList.css";
 import trashIcon from "../assets/trash-icon.svg";
+import ConfirmationModal from "./ConfirmationModal";
 
-const PlayerList = (props: any) => {
-  const [players, setPlayers] = useState<any>([]);
-  const playersCollectionRef = collection(db, `games/${props.gameId}/players`);
+interface Props {
+  gameId: any;
+  isLocked: boolean;
+  fetchPlayers: any;
+  players: any;
+  openModal: any;
+  showModal: any;
+  closeModal: any;
+  selectedPlayerId: any;
+}
 
+const PlayerList = ({
+  gameId,
+  isLocked,
+  fetchPlayers,
+  players,
+  openModal,
+  showModal,
+  closeModal,
+  selectedPlayerId,
+}: Props) => {
   // Fetch players
   useEffect(() => {
-    const playersQuery = query(playersCollectionRef, orderBy("score", "desc"));
-
-    const unsubscribe = onSnapshot(playersQuery, (snapshot) => {
-      const newPlayers = snapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setPlayers(newPlayers);
-    });
-
-    return () => unsubscribe();
-  }, [props.gameId]);
+    const unsubscribe = fetchPlayers(); // Call the function passed as a prop
+    return () => unsubscribe(); // Cleanup on unmount
+  }, [fetchPlayers]); // Add dependency if the function reference changes
 
   // Delete Player Function
   const deletePlayer = async (id: string) => {
-    const playersDocRef = doc(db, `games/${props.gameId}/players`, id);
+    const playersDocRef = doc(db, `games/${gameId}/players`, id);
     await deleteDoc(playersDocRef);
+  };
+
+  const confirmDeletePlayer = () => {
+    deletePlayer(selectedPlayerId);
+    console.log(`Player with id: ${selectedPlayerId} has been deleted.`);
+    closeModal();
   };
 
   // Update Wins Functions
   const plusWin = async (id: string, wins: number, losses: number) => {
-    const playersDocRef = doc(db, `games/${props.gameId}/players`, id);
+    const playersDocRef = doc(db, `games/${gameId}/players`, id);
     const updatedWins = wins + 1;
     const newScore = updatedWins / (losses || 1);
     const newFields = { wins: updatedWins, score: newScore };
     await updateDoc(playersDocRef, newFields);
   };
   const minusWin = async (id: string, wins: number, losses: number) => {
-    const playersDocRef = doc(db, `games/${props.gameId}/players`, id);
+    const playersDocRef = doc(db, `games/${gameId}/players`, id);
     if (wins < 1) return;
     const updatedWins = wins - 1;
     const newScore = updatedWins / (losses || 1);
@@ -56,14 +63,14 @@ const PlayerList = (props: any) => {
 
   // Update Losses Functions
   const plusLose = async (id: string, wins: number, losses: number) => {
-    const playersDocRef = doc(db, `games/${props.gameId}/players`, id);
+    const playersDocRef = doc(db, `games/${gameId}/players`, id);
     const updatedLosses = losses + 1;
     const newScore = wins / (updatedLosses || 1);
     const newFields = { losses: updatedLosses, score: newScore };
     await updateDoc(playersDocRef, newFields);
   };
   const minusLose = async (id: string, wins: number, losses: number) => {
-    const playersDocRef = doc(db, `games/${props.gameId}/players`, id);
+    const playersDocRef = doc(db, `games/${gameId}/players`, id);
     if (losses < 1) return;
     const updatedLosses = losses - 1;
     const newScore = wins / (updatedLosses || 1);
@@ -139,7 +146,7 @@ const PlayerList = (props: any) => {
                       plusWin(player.id, player.wins, player.losses);
                       animateUp(event);
                     }}
-                    disabled={props.isLocked}
+                    disabled={isLocked}
                   >
                     +
                   </button>
@@ -150,7 +157,7 @@ const PlayerList = (props: any) => {
                       minusWin(player.id, player.wins, player.losses);
                       animateDown(event);
                     }}
-                    disabled={props.isLocked}
+                    disabled={isLocked}
                   >
                     -
                   </button>
@@ -163,7 +170,7 @@ const PlayerList = (props: any) => {
                       plusLose(player.id, player.wins, player.losses);
                       animateDown(event);
                     }}
-                    disabled={props.isLocked}
+                    disabled={isLocked}
                   >
                     +
                   </button>
@@ -174,7 +181,7 @@ const PlayerList = (props: any) => {
                       minusLose(player.id, player.wins, player.losses);
                       animateUp(event);
                     }}
-                    disabled={props.isLocked}
+                    disabled={isLocked}
                   >
                     -
                   </button>
@@ -187,10 +194,8 @@ const PlayerList = (props: any) => {
               <div className="single-box delete-container">
                 <button
                   className="delete-button"
-                  onClick={() => {
-                    deletePlayer(player.id);
-                  }}
-                  disabled={props.isLocked}
+                  onClick={() => openModal(player.id)}
+                  disabled={isLocked}
                 >
                   <img src={trashIcon} alt="Delete Player" />
                 </button>
@@ -199,6 +204,16 @@ const PlayerList = (props: any) => {
           );
         })}
       </div>
+
+      <ConfirmationModal
+        isOpen={showModal}
+        onConfirm={confirmDeletePlayer}
+        onCancel={closeModal}
+        modalParagraphText={
+          "Hráč bude odstraněn a veškerá data trvale ztracená. \n Opravdu chcete odstranit hráče?"
+        }
+        modalButtonText="Odstranit"
+      />
     </>
   );
 };

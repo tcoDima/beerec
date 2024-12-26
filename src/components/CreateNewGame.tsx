@@ -4,9 +4,28 @@ import { db } from "../firebaseConfig";
 import ActiveGame from "./ActiveGame";
 import "./CreateNewGame.css";
 
-const CreateNewGame = () => {
+interface Props {
+  fetchPlayers?: any;
+  players?: any;
+  openModal?: any;
+  showModal?: any;
+  closeModal?: any;
+  selectedPlayerId?: any;
+  loadGame: any;
+}
+
+const CreateNewGame = ({
+  fetchPlayers,
+  players,
+  openModal,
+  showModal,
+  closeModal,
+  selectedPlayerId,
+  loadGame,
+}: Props) => {
   const [newGameName, setNewGameName] = useState("");
   const [currentGameId, setCurrentGameId] = useState<string | null>(null);
+  const [isLocked, setIsLocked] = useState(false);
 
   const createNewGame = async () => {
     if (!newGameName) return;
@@ -16,13 +35,16 @@ const CreateNewGame = () => {
     const newGame = {
       name: newGameName,
       date: Timestamp.now(),
-      winner: "TBD",
       isLocked: false,
+      winner: "TBD",
     };
 
     const gameDocRef = await addDoc(gamesCollectionRef, newGame);
+    setIsLocked(false);
     setCurrentGameId(gameDocRef.id);
-    console.log("Created game with id: ", currentGameId);
+    console.log("Created game with id: ", gameDocRef.id);
+
+    loadGame(gameDocRef.id, newGame.name, isLocked);
   };
 
   return (
@@ -51,7 +73,17 @@ const CreateNewGame = () => {
           </div>
         </div>
       ) : (
-        <ActiveGame gameId={currentGameId} gameName={newGameName} />
+        <ActiveGame
+          gameId={currentGameId}
+          gameName={newGameName}
+          isLocked={false}
+          fetchPlayers={fetchPlayers}
+          players={players}
+          selectedPlayerId={selectedPlayerId}
+          openModal={openModal}
+          showModal={showModal}
+          closeModal={closeModal}
+        />
       )}
     </>
   );

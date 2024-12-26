@@ -41,7 +41,8 @@ body {
   text-align: center;
   color: #fff;
   background: var(--gradient-1);
-  min-height: 100vh;
+  background-size:cover;
+  height: 100vh;
   padding: 50px;
   margin: 0;
 }
@@ -68,4 +69,11 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(347, 81%, 32%); 
+}
+
+@media  (max-width: 767px) {
+  #root {
+    scale: 0.5
+  }
+  
 }

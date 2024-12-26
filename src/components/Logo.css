@@ -2,6 +2,12 @@
 
 .logo-container {
     position: relative;
+    transition: .3s ease-in-out;
+    margin: 0 auto;
+    width: fit-content;
+}
+.logo-container:hover {
+    scale: 1.025
 }
 
 .logo-container h1 {
