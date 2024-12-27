@@ -26,11 +26,11 @@ const PlayerList = ({
   closeModal,
   selectedPlayerId,
 }: Props) => {
-  // Fetch players
+  // Fetch Players - Effect
   useEffect(() => {
-    const unsubscribe = fetchPlayers(); // Call the function passed as a prop
-    return () => unsubscribe(); // Cleanup on unmount
-  }, [fetchPlayers]); // Add dependency if the function reference changes
+    const unsubscribe = fetchPlayers();
+    return () => unsubscribe(); // Cleanup listener
+  }, [fetchPlayers]); // Dependency
 
   // Delete Player Function
   const deletePlayer = async (id: string) => {

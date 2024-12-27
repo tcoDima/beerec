@@ -28,10 +28,11 @@ const GameListNew = ({
   closeModal,
   selectedGameId,
 }: Props) => {
+  // Fetch Games - Effect
   useEffect(() => {
-    const unsubscribe = fetchGames(); // Call the function passed as a prop
-    return () => unsubscribe(); // Cleanup on unmount
-  }, [fetchGames]); // Add dependency if the function reference changes
+    const unsubscribe = fetchGames();
+    return () => unsubscribe(); // Cleanup listener
+  }, [fetchGames]); // Dependency
 
   // Forrmat date of the Game creation
   const formatDate = (date: any) => {

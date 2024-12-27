@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { db } from "../firebaseConfig";
 import {
   collection,
@@ -38,8 +38,8 @@ const Game = () => {
     activeGame: false,
   });
 
-  // Fetch games
-  const fetchGames = () => {
+  // Memoized Fetch Games
+  const fetchGames = useCallback(() => {
     const gamesQuery = query(gamesCollectionRef, orderBy("date", "desc"));
 
     const unsubscribe = onSnapshot(gamesQuery, (snapshot) => {
@@ -47,14 +47,14 @@ const Game = () => {
         ...doc.data(),
         id: doc.id,
       }));
-      setGames(newGames);
+      setGames(newGames); // Update state
     });
 
-    return unsubscribe;
-  };
+    return unsubscribe; // Return unsubscribe for cleanup
+  }, [gamesCollectionRef]); // Dependencies
 
-  // Fetch players
-  const fetchPlayers = () => {
+  // Memoized Fetch Players
+  const fetchPlayers = useCallback(() => {
     const playersQuery = query(playersCollectionRef, orderBy("score", "desc"));
 
     const unsubscribe = onSnapshot(playersQuery, (snapshot) => {
@@ -62,11 +62,11 @@ const Game = () => {
         ...doc.data(),
         id: doc.id,
       }));
-      setPlayers(newPlayers);
+      setPlayers(newPlayers); // Update state
     });
 
-    return unsubscribe;
-  };
+    return unsubscribe; // Return unsubscribe for cleanup
+  }, [playersCollectionRef]); // Dependencies
 
   // Load game in GameList
   const loadGame = (
@@ -96,27 +96,22 @@ const Game = () => {
 
   //Finish game
   const finishGame = async () => {
-    try {
-      // Find the player with the highest score
-      const winner = players.reduce(
-        (prev: { score: number }, current: { score: number }) =>
-          prev.score > current.score ? prev : current
-      );
+    // Find the player with the highest score
+    const winner = players.reduce(
+      (prev: { score: number }, current: { score: number }) =>
+        prev.score > current.score ? prev : current
+    );
 
-      // Update the game document with isLocked and winner
-      const gameDocRef = doc(db, "games", activeGame.gameId);
-      await updateDoc(gameDocRef, {
-        isLocked: true,
-        winner: winner.name, // Store winner's name
-      });
+    // Update the game document with isLocked and winner
+    const gameDocRef = doc(db, `games/${activeGame.gameId}`);
+    await updateDoc(gameDocRef, {
+      isLocked: true,
+      winner: winner.name, // Store winner's name
+    });
 
-      console.log(
-        `Game ${activeGame.gameId} is locked with winner: ${winner.name}`
-      );
-      // onFinishGame(); // Navigate or update state after finishing
-    } catch (error) {
-      console.error("Error finishing the game:", error);
-    }
+    console.log(
+      `Game ${activeGame.gameId} is locked with winner: ${winner.name}`
+    );
   };
 
   // Confirmation modal
